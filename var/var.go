@@ -30,4 +30,16 @@ func main() {
 	k := "hi"
 
 	fmt.Println(k);
+
+	// const CONST int = 10
+
+	const (
+		Red int = iota
+		Blue int = iota	
+		Green int = iota
+	)
+
+	fmt.Println(Red, Blue, Green)
+
+
 }
