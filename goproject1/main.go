@@ -28,6 +28,22 @@ func InputIntValue() (int, error) {
 	return input, err
 }
 
+// return isAnswer
+func isAnswer(input int, answer int) bool {
+	flag := false
+
+	if input == answer {
+		fmt.Println("정답입니다!!", answer)
+		flag = true
+	} else if input > answer {
+		fmt.Println("입력하신 숫자가 정답보다 큽니다.")
+	} else {
+		fmt.Println("입력하신 숫자가 정답보다 작습니다.")
+	}
+
+	return flag;
+}
+
 func main() {
 	fmt.Println("숫자 맞추기 게임에 오신걸 환영합니다!")
 
@@ -35,25 +51,19 @@ func main() {
 	answer := getRandomIntn(100)
 
 	for flag {
-		var input int
-		
 		fmt.Print("숫자를 입력해주세요: ")
-		_, err := fmt.Scanln(&input)
+		value, err := InputIntValue()
 
 		if err != nil {
-			fmt.Println("에러가 존재합니다!")
+			fmt.Println("숫자만 입력하세요.")
 			continue
-		} else {
-			fmt.Println("입력하신 숫자는 다음과 같습니다", input)
+		}
 
-			if answer > input {
-				fmt.Println("입력하신 숫자가 정답보다 작습니다.")
-			} else if answer < input {
-				fmt.Println("입력하신 숫자가 정답보다 큽니다.")
-			} else {
-				fmt.Println("정답입니다!!", answer)
-				break;
-			}				
+		isAnswer := isAnswer(value, answer)
+
+		if isAnswer {
+			fmt.Println("프로그램을 종료합니다.")
+			break
 		}
 	}
 
